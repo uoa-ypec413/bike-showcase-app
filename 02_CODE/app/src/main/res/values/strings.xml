@@ -2,5 +2,9 @@
     <string name="app_name">Bike Showcase</string>
     <string name="top_picks_title">TOP PICKS</string>
     <string name="search_bar_query">Search</string>
+    <string name="road_image_description">ROAD</string>
+    <string name="mountain_image_description">MOUNTAIN</string>
+    <string name="adventure_image_description">ADVENTURE</string>
+    <string name="kids_image_description">KIDS</string>
 
 </resources>
