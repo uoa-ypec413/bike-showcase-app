@@ -1,195 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/background_primary_variant_round"
-        android:elevation="3dp"
-        app:iconifiedByDefault="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="@string/search_bar_query"
-        app:queryBackground="@android:color/transparent" />
-
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_view"
-        android:text="@string/top_picks_title"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:elevation="3dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view"
-        />
+        tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recycler_view">
-
-        <RelativeLayout
-            android:id="@+id/road_category"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:padding="10dp"
+            android:layout_height="56dp"
+            android:layout_margin="16dp"
             android:background="@drawable/background_primary_variant_round"
-            android:elevation="3dp">
+            android:elevation="3dp"
+            app:iconifiedByDefault="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="@string/search_bar_query"
+            app:queryBackground="@android:color/transparent" />
 
-            <ImageView
-                android:id="@+id/road_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="8dp"
-                android:contentDescription="@string/road_image_description"
-                android:src="@drawable/ic_road"
-                app:tint="?colorSecondary" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/road_image_view"
-                android:layout_alignBottom="@id/road_image_view"
-                android:layout_toEndOf="@id/road_image_view"
-                android:gravity="center"
-                android:text="@string/road_image_description"
-                android:textAppearance="?attr/textAppearanceHeadline5" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/mountain_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:padding="10dp"
-            android:background="@drawable/background_primary_variant_round"
-            android:elevation="3dp">
-
-            <ImageView
-                android:id="@+id/mountain_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="8dp"
-                android:contentDescription="@string/mountain_image_description"
-                android:src="@drawable/ic_mountain"
-                app:tint="?colorSecondary" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/mountain_image_view"
-                android:layout_alignTop="@id/mountain_image_view"
-                android:layout_alignBottom="@id/mountain_image_view"
-                android:gravity="center"
-                android:text="@string/mountain_image_description"
-                android:textAppearance="?attr/textAppearanceHeadline5"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/adventure_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:padding="10dp"
-            android:background="@drawable/background_primary_variant_round"
-            android:elevation="3dp">
-
-            <ImageView
-                android:id="@+id/adventure_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="8dp"
-                android:contentDescription="@string/adventure_image_description"
-                android:src="@drawable/ic_globe_europe"
-                app:tint="?colorSecondary" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/adventure_image_view"
-                android:layout_alignTop="@id/adventure_image_view"
-                android:layout_alignBottom="@id/adventure_image_view"
-                android:gravity="center"
-                android:text="@string/adventure_image_description"
-                android:textAppearance="?attr/textAppearanceHeadline5"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/kids_category"
+        <TextView
+            android:id="@+id/text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:padding="10dp"
-            android:background="@drawable/background_primary_variant_round"
-            android:elevation="3dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_view"
+            android:text="@string/top_picks_title"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            />
 
-            <ImageView
-                android:id="@+id/kids_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="8dp"
-                android:contentDescription="@string/kids_image_description"
-                android:src="@drawable/ic_baby"
-                app:tint="?colorSecondary" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:elevation="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view"
+            />
 
-            <TextView
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recycler_view">
+
+            <RelativeLayout
+                android:id="@+id/road_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/kids_image_view"
-                android:layout_alignTop="@id/kids_image_view"
-                android:layout_alignBottom="@id/kids_image_view"
-                android:gravity="center"
-                android:text="@string/kids_image_description"
-                android:textAppearance="?attr/textAppearanceHeadline5"/>
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:padding="10dp"
+                android:background="@drawable/background_primary_variant_round"
+                android:elevation="3dp">
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/road_image_view"
+                    android:layout_width="95sp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/road_image_description"
+                    android:src="@drawable/ic_road"
+                    android:gravity ="center"
+                    app:tint="?colorSecondary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/road_image_view"
+                    android:layout_alignBottom="@id/road_image_view"
+                    android:layout_toEndOf="@id/road_image_view"
+                    android:gravity="center"
+                    android:text="@string/road_image_description"
+                    android:textAppearance="?attr/textAppearanceHeadline5" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/mountain_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:padding="10dp"
+                android:background="@drawable/background_primary_variant_round"
+                android:elevation="3dp">
+
+                <ImageView
+                    android:id="@+id/mountain_image_view"
+                    android:layout_width="95sp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/mountain_image_description"
+                    android:src="@drawable/ic_mountain"
+                    android:gravity="center"
+                    app:tint="?colorSecondary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/mountain_image_view"
+                    android:layout_alignTop="@id/mountain_image_view"
+                    android:layout_alignBottom="@id/mountain_image_view"
+                    android:gravity="center"
+                    android:text="@string/mountain_image_description"
+                    android:textAppearance="?attr/textAppearanceHeadline5"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/adventure_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:padding="10dp"
+                android:background="@drawable/background_primary_variant_round"
+                android:elevation="3dp">
+
+                <ImageView
+                    android:id="@+id/adventure_image_view"
+                    android:layout_width="95sp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/adventure_image_description"
+                    android:src="@drawable/ic_globe_europe"
+                    android:gravity="center"
+                    app:tint="?colorSecondary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/adventure_image_view"
+                    android:layout_alignTop="@id/adventure_image_view"
+                    android:layout_alignBottom="@id/adventure_image_view"
+                    android:gravity="center"
+                    android:text="@string/adventure_image_description"
+                    android:textAppearance="?attr/textAppearanceHeadline5"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/kids_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:padding="10dp"
+                android:background="@drawable/background_primary_variant_round"
+                android:elevation="3dp">
+
+                <ImageView
+                    android:id="@+id/kids_image_view"
+                    android:layout_width="95sp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/kids_image_description"
+                    android:src="@drawable/ic_baby"
+                    android:gravity="center"
+                    app:tint="?colorSecondary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/kids_image_view"
+                    android:layout_alignTop="@id/kids_image_view"
+                    android:layout_alignBottom="@id/kids_image_view"
+                    android:gravity="center"
+                    android:text="@string/kids_image_description"
+                    android:textAppearance="?attr/textAppearanceHeadline5"/>
+
+            </RelativeLayout>
 
 
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
