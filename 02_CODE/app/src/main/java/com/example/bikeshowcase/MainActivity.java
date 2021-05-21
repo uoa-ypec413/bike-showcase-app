@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import androidx.appcompat.widget.SearchView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +17,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SearchView searchView = findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent searchIntent = new Intent(MainActivity.this, ListActivity.class);
+                String message = "Search results for \"" + query + "\"";
+                searchIntent.putExtra(EXTRA_MESSAGE, message);
+                startActivity(searchIntent);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                return false;
+            }
+        });
 
         RelativeLayout roadCategory = findViewById(R.id.road_category);
         roadCategory.setOnClickListener(v -> {
