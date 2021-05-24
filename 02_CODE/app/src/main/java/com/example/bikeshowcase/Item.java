@@ -1,15 +1,18 @@
 package com.example.bikeshowcase;
 
+import java.util.List;
+
 public class Item {
-    String itemTitle, imageFileName, description, colour;
-    Float price;
+    String itemTitle, description, colour;
+    String[] imageFileNameList;
+    Integer price;
 
     public String getItemTitle() {
         return itemTitle;
     }
 
-    public String getImageFileName() {
-        return imageFileName;
+    public String[] getImageFileNameList() {
+        return imageFileNameList;
     }
 
     public String getDescription() {
@@ -20,13 +23,13 @@ public class Item {
         return colour;
     }
 
-    public Float getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public Item(String itemTitle, String imageFileName, String description, String colour, Float price){
+    public Item(String itemTitle, String description, String colour, String[] imageFileNameList, Integer price){
         this.itemTitle = itemTitle;
-        this.imageFileName = imageFileName;
+        this.imageFileNameList = imageFileNameList;
         this.description = description;
         this.colour = colour;
         this.price = price;
