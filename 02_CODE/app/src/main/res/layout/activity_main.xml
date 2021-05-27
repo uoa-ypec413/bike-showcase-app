@@ -92,104 +92,62 @@
 
             <RelativeLayout
                 android:id="@+id/mountain_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:padding="10dp"
-                android:background="@drawable/background_primary_variant_round"
-                android:elevation="3dp">
+                style="@style/CategoryRelativeLayoutStyle">
 
                 <ImageView
                     android:id="@+id/mountain_image_view"
-                    android:layout_width="95sp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="8dp"
+                    style="@style/CategoryImageViewStyle"
                     android:contentDescription="@string/mountain_image_description"
                     android:src="@drawable/ic_mountain"
-                    android:gravity="center"
                     app:tint="?colorSecondary" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/CategoryTextViewStyle"
                     android:layout_toEndOf="@id/mountain_image_view"
                     android:layout_alignTop="@id/mountain_image_view"
                     android:layout_alignBottom="@id/mountain_image_view"
-                    android:gravity="center"
-                    android:text="@string/mountain_image_description"
-                    android:textAppearance="?attr/textAppearanceHeadline5"/>
+                    android:text="@string/mountain_image_description"/>
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/adventure_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:padding="10dp"
-                android:background="@drawable/background_primary_variant_round"
-                android:elevation="3dp">
+                style="@style/CategoryRelativeLayoutStyle">
 
                 <ImageView
                     android:id="@+id/adventure_image_view"
-                    android:layout_width="95sp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="8dp"
+                    style="@style/CategoryImageViewStyle"
                     android:contentDescription="@string/adventure_image_description"
                     android:src="@drawable/ic_globe_europe"
-                    android:gravity="center"
                     app:tint="?colorSecondary" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/CategoryTextViewStyle"
                     android:layout_toEndOf="@id/adventure_image_view"
                     android:layout_alignTop="@id/adventure_image_view"
                     android:layout_alignBottom="@id/adventure_image_view"
-                    android:gravity="center"
-                    android:text="@string/adventure_image_description"
-                    android:textAppearance="?attr/textAppearanceHeadline5"/>
+                    android:text="@string/adventure_image_description"/>
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/kids_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:padding="10dp"
-                android:background="@drawable/background_primary_variant_round"
-                android:elevation="3dp">
+                style="@style/CategoryRelativeLayoutStyle"
+                android:layout_marginBottom="16dp">
 
                 <ImageView
                     android:id="@+id/kids_image_view"
-                    android:layout_width="95sp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="8dp"
+                    style="@style/CategoryImageViewStyle"
                     android:contentDescription="@string/kids_image_description"
                     android:src="@drawable/ic_baby"
-                    android:gravity="center"
                     app:tint="?colorSecondary" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/CategoryTextViewStyle"
                     android:layout_toEndOf="@id/kids_image_view"
                     android:layout_alignTop="@id/kids_image_view"
                     android:layout_alignBottom="@id/kids_image_view"
-                    android:gravity="center"
-                    android:text="@string/kids_image_description"
-                    android:textAppearance="?attr/textAppearanceHeadline5"/>
+                    android:text="@string/kids_image_description"/>
 
             </RelativeLayout>
 
