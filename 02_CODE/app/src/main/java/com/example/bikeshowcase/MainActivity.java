@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import androidx.appcompat.widget.SearchView;
 
+
 public class MainActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "";
