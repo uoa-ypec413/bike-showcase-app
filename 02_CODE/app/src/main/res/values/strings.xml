@@ -1,3 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Bike Showcase</string>
+    <string name="top_picks_title">TOP PICKS</string>
+    <string name="search_bar_query">Search</string>
+    <string name="road_image_description">ROAD</string>
+    <string name="mountain_image_description">MOUNTAIN</string>
+    <string name="adventure_image_description">ADVENTURE</string>
+    <string name="kids_image_description">KIDS</string>
+    <string name="road_category_name">Road Bikes</string>
+    <string name="mountain_category_name">Mountain Bikes</string>
+    <string name="adventure_category_name">Adventure Bikes</string>
+    <string name="kids_category_name">Kids Bikes</string>
 </resources>
