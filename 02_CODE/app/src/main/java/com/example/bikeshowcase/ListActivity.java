@@ -13,7 +13,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        TextView textView = findViewById(R.id.text_view);
+        TextView textView = findViewById(R.id.title_text_view);
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);

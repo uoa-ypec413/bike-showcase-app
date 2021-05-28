@@ -23,30 +23,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:queryHint="@string/search_bar_query"
-            app:queryBackground="@android:color/transparent" />
+            app:queryBackground="@android:color/transparent"/>
 
         <TextView
             android:id="@+id/text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_margin="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_view"
             android:text="@string/top_picks_title"
-            android:textAppearance="?attr/textAppearanceHeadline5"
-            />
+            android:textAppearance="?attr/textAppearanceHeadline5"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/top_picks_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_height="0dp"
             android:elevation="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_view"
-            />
+            app:layout_constraintTop_toBottomOf="@id/text_view"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -54,29 +51,18 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recycler_view">
+            app:layout_constraintTop_toBottomOf="@id/top_picks_view">
 
             <RelativeLayout
                 android:id="@+id/road_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:padding="10dp"
-                android:background="@drawable/background_primary_variant_round"
-                android:elevation="3dp">
+                style="@style/CategoryRelativeLayoutStyle">
 
                 <ImageView
                     android:id="@+id/road_image_view"
-                    android:layout_width="95sp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="8dp"
+                    style="@style/CategoryImageViewStyle"
                     android:contentDescription="@string/road_image_description"
                     android:src="@drawable/ic_road"
-                    android:gravity ="center"
-                    app:tint="?colorSecondary" />
+                    app:tint="?colorSecondary"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -86,7 +72,7 @@
                     android:layout_toEndOf="@id/road_image_view"
                     android:gravity="center"
                     android:text="@string/road_image_description"
-                    android:textAppearance="?attr/textAppearanceHeadline5" />
+                    android:textAppearance="?attr/textAppearanceHeadline5"/>
 
             </RelativeLayout>
 
@@ -99,7 +85,7 @@
                     style="@style/CategoryImageViewStyle"
                     android:contentDescription="@string/mountain_image_description"
                     android:src="@drawable/ic_mountain"
-                    app:tint="?colorSecondary" />
+                    app:tint="?colorSecondary"/>
 
                 <TextView
                     style="@style/CategoryTextViewStyle"
@@ -119,7 +105,7 @@
                     style="@style/CategoryImageViewStyle"
                     android:contentDescription="@string/adventure_image_description"
                     android:src="@drawable/ic_globe_europe"
-                    app:tint="?colorSecondary" />
+                    app:tint="?colorSecondary"/>
 
                 <TextView
                     style="@style/CategoryTextViewStyle"
@@ -140,7 +126,7 @@
                     style="@style/CategoryImageViewStyle"
                     android:contentDescription="@string/kids_image_description"
                     android:src="@drawable/ic_baby"
-                    app:tint="?colorSecondary" />
+                    app:tint="?colorSecondary"/>
 
                 <TextView
                     style="@style/CategoryTextViewStyle"
@@ -150,13 +136,6 @@
                     android:text="@string/kids_image_description"/>
 
             </RelativeLayout>
-
-
-
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

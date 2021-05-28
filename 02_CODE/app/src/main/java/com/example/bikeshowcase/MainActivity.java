@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 Intent searchIntent = new Intent(MainActivity.this, ListActivity.class);
                 String message = "Search results for \"" + query + "\"";
-                searchIntent.putExtra(EXTRA_MESSAGE, message);
+                searchIntent.putExtra(EXTRA_MESSAGE, message); // Send user's search query
                 startActivity(searchIntent);
                 return false;
             }
@@ -69,5 +72,13 @@ public class MainActivity extends AppCompatActivity {
         Drawable blueIcon = icon.getDrawable();
         blueIcon.setTint(R.attr.colorSecondaryVariant);
         icon.setImageDrawable(blueIcon);
+
+        RecyclerView recyclerView = findViewById(R.id.top_picks_view);
+        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(horizontalLayoutManager);
+
+        List<Item> bikeList = DataProvider.getItems();
+        RecyclerViewItemAdapter recyclerViewItemAdapter = new RecyclerViewItemAdapter(this, R.layout.bike_recycler_view_item, bikeList);
+        recyclerView.setAdapter(recyclerViewItemAdapter);
     }
 }
