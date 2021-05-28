@@ -13,16 +13,18 @@ import java.util.List;
 
 public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewItemAdapter.ItemViewHolder> {
 
-    int mLayoutID;
-    List<Item> mItems;
-    Context mContext;
-    LayoutInflater mInflater;
+    private int mLayoutID;
+    private List<Item> mItems;
+    private Context mContext;
+    private LayoutInflater mInflater;
+    private OnItemClickListener mOnItemClickListener;
 
-    public RecyclerViewItemAdapter(Context context, int resource, List<Item> items) {
+    public RecyclerViewItemAdapter(Context context, int resource, List<Item> items, OnItemClickListener onItemClickListener) {
         this.mLayoutID = resource;
         this.mContext = context;
         this.mItems = items;
         this.mInflater = LayoutInflater.from(mContext);
+        this.mOnItemClickListener = onItemClickListener;
     }
 
     // Inflates the bike view
@@ -30,7 +32,7 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(mLayoutID, parent, false);
-        return new ItemViewHolder(view);
+        return new ItemViewHolder(view, mOnItemClickListener);
     }
 
     // Binds the bike image and text data to the ImageView and TextView
@@ -38,7 +40,7 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
 
         //Get the bike object for the current position
-        Item currentItem = mItems.get(position);
+        Item currentItem = getItem(position);
         int i = mContext.getResources().getIdentifier(
                 currentItem.getImageFileNameList()[1], "drawable",
                 mContext.getPackageName());
@@ -53,15 +55,38 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
         return mItems.size();
     }
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder {
+    // Gets the item at a given position
+    public Item getItem(int position) {
+        return mItems.get(position);
+    }
+
+    // View Holder for each individual item
+    public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView bikeImageView;
         TextView bikeTextView;
+        OnItemClickListener onItemClickListener;
 
-        public ItemViewHolder(@NonNull View itemView) {
+        public ItemViewHolder(@NonNull View itemView, OnItemClickListener onItemClickListener) {
             super(itemView);
-            bikeImageView = itemView.findViewById(R.id.bike_image_view);
-            bikeTextView = itemView.findViewById(R.id.bike_text_view);
+            this.bikeImageView = itemView.findViewById(R.id.bike_image_view);
+            this.bikeTextView = itemView.findViewById(R.id.bike_text_view);
+
+            // Sets the onItemClickListener for each individual view holder
+            this.onItemClickListener = onItemClickListener;
+
+            // Attaches the onClickListener to the individual view
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            this.onItemClickListener.onItemClick(getBindingAdapterPosition());
+        }
+    }
+
+    // Allows the parent activity to implement the on item click listener
+    public interface OnItemClickListener {
+        void onItemClick(int position);
     }
 }

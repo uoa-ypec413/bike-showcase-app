@@ -1,8 +1,9 @@
 package com.example.bikeshowcase;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Item {
+public class Item implements Serializable {
     String itemTitle, description, colour;
     String[] imageFileNameList;
     Integer price;

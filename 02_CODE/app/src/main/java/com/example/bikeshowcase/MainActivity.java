@@ -5,17 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewItemAdapter.OnItemClickListener {
 
     public final static String EXTRA_MESSAGE = "";
+    private RecyclerViewItemAdapter mRecyclerViewItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +81,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(horizontalLayoutManager);
 
         List<Item> bikeList = DataProvider.getItems();
-        RecyclerViewItemAdapter recyclerViewItemAdapter = new RecyclerViewItemAdapter(this, R.layout.bike_recycler_view_item, bikeList);
-        recyclerView.setAdapter(recyclerViewItemAdapter);
+        mRecyclerViewItemAdapter = new RecyclerViewItemAdapter(this, R.layout.bike_recycler_view_item, bikeList, this);
+        recyclerView.setAdapter(mRecyclerViewItemAdapter);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent detailsIntent = new Intent(MainActivity.this, DetailsActivity.class);
+        detailsIntent.putExtra("bike", (Serializable) mRecyclerViewItemAdapter.getItem(position));
+        startActivity(detailsIntent);
     }
 }
