@@ -3,7 +3,10 @@ package com.example.bikeshowcase;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -38,5 +41,15 @@ public class DetailsActivity extends AppCompatActivity {
 
         TextView colorTextView = findViewById(R.id.details_description_view);
         colorTextView.setText(item.getDescription().toString());
+
+        ImageButton leftNav = findViewById(R.id.left_nav);
+        leftNav.setOnClickListener(v -> {
+            viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
+        });
+
+        ImageButton rightNav = findViewById(R.id.right_nav);
+        rightNav.setOnClickListener(v -> {
+            viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+        });
     }
 }
