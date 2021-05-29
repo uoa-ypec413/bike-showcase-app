@@ -9,7 +9,9 @@
     <ImageView
         android:id="@+id/bike_image_view"
         android:layout_width="wrap_content"
-        android:layout_height="96dp"
+        android:layout_height="100dp"
+        android:padding="5dp"
+        android:background = "@color/white"
         android:src="@drawable/demo_1"/>
 
     <TextView

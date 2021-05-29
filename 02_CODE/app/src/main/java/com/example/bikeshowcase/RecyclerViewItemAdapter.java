@@ -35,7 +35,7 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
         return new ItemViewHolder(view, mOnItemClickListener);
     }
 
-    // Binds the bike image and text data to the ImageView and TextView
+    // Populates the data from mItems to the view items
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
 
@@ -47,6 +47,10 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
 
         holder.bikeImageView.setImageResource(i);
         holder.bikeTextView.setText(currentItem.getItemTitle());
+    }
+
+    public void setItems(List<Item> items) {
+        this.mItems = items;
     }
 
     // Gets the total number of bikes
@@ -61,6 +65,7 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
     }
 
     // View Holder for each individual item
+    // Implements View.OnClickListener so that the view items are clickable
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView bikeImageView;
