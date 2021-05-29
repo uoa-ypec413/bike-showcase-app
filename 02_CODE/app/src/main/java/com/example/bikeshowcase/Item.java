@@ -29,28 +29,34 @@ public class Item {
         return price;
     }
 
-    public void setCategory(String category) {
+    public Item setCategory(String category) {
         this.category = category;
+        return this;
     }
 
-    public void setItemTitle(String itemTitle) {
+    public Item setItemTitle(String itemTitle) {
         this.itemTitle = itemTitle;
+        return this;
     }
 
-    public void setDescription(String description) {
+    public Item setDescription(String description) {
         this.description = description;
+        return this;
     }
 
-    public void setColour(String colour) {
+    public Item setColour(String colour) {
         this.colour = colour;
+        return this;
     }
 
-    public void setPrice(Integer price) {
+    public Item setPrice(Integer price) {
         this.price = price;
+        return this;
     }
 
-    public void setImageFileNameList(String[] imageFileNameList) {
+    public Item setImageFileNameList(String[] imageFileNameList) {
         this.imageFileNameList = imageFileNameList;
+        return this;
     }
 
     public Item(){

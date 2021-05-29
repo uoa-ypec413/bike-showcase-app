@@ -370,6 +370,6 @@ public class DataProvider {
                         .setColour("Gloss Blaze / Black")
                         .setPrice(625)
                         .setImageFileNameList(new String[]{"jett_16_1", "jett_16_2", "jett_16_3"}), 0);
-        
+
     }
 }
