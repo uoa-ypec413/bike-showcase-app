@@ -39,12 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
         RelativeLayout roadCategory = findViewById(R.id.road_category);
         roadCategory.setOnClickListener(v -> {
-            // Starting DetailsActivity from here for testing purposes
-            Intent detailsActivityIntent = new Intent(MainActivity.this, DetailsActivity.class);
-            startActivity(detailsActivityIntent);
-            /*Intent roadCategoryIntent = new Intent(MainActivity.this, ListActivity.class);
+            Intent roadCategoryIntent = new Intent(MainActivity.this, ListActivity.class);
             roadCategoryIntent.putExtra(EXTRA_MESSAGE, getString(R.string.road_category_name));
-            startActivity(roadCategoryIntent);*/
+            startActivity(roadCategoryIntent);
         });
 
         RelativeLayout mountainCategory = findViewById(R.id.mountain_category);
