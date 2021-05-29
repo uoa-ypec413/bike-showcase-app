@@ -23,6 +23,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
         this.mInflater = LayoutInflater.from(mContext);
     }
 
+    // Inflates the xml layout for the ViewPager
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -30,6 +31,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
         return new ViewHolder(view);
     }
 
+    // Populates the data from mItem to the ImageView
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String currentImage = this.mImages[position];
@@ -40,11 +42,13 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
         holder.imageView.setImageResource(i);
     }
 
+    // Gets the total number of images
     @Override
     public int getItemCount() {
         return mImages.length;
     }
 
+    // View Holder for each individual image
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
