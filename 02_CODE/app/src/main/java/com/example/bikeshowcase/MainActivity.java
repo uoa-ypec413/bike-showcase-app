@@ -80,15 +80,29 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewItemA
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(horizontalLayoutManager);
 
-        List<Item> bikeList = DataProvider.getItems();
-        mRecyclerViewItemAdapter = new RecyclerViewItemAdapter(this, R.layout.bike_recycler_view_item, bikeList, this);
+        List<Item> mostVisitedItems = DataProvider.getItemsOrderedByVisits();
+        mRecyclerViewItemAdapter = new RecyclerViewItemAdapter(this, R.layout.bike_recycler_view_item, mostVisitedItems, this);
         recyclerView.setAdapter(mRecyclerViewItemAdapter);
     }
 
     @Override
     public void onItemClick(int position) {
+        // Start a details activity and pass the current item
         Intent detailsIntent = new Intent(MainActivity.this, DetailsActivity.class);
-        detailsIntent.putExtra("bike", (Serializable) mRecyclerViewItemAdapter.getItem(position));
+        Item item = mRecyclerViewItemAdapter.getItem(position);
+        detailsIntent.putExtra("bike", item);
         startActivity(detailsIntent);
+
+        DataProvider.incrementItemViewCount(item);
+    }
+
+    // This method updates the items for the adapter with the most visited items
+    // each time the MainActivity is resumed
+    @Override
+    protected void onResume() {
+        super.onResume();
+        List<Item> mostVisitedItems = DataProvider.getItemsOrderedByVisits();
+        this.mRecyclerViewItemAdapter.setItems(mostVisitedItems);
+        this.mRecyclerViewItemAdapter.notifyDataSetChanged();
     }
 }
