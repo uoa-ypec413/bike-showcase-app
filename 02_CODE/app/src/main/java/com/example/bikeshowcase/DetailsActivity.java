@@ -20,10 +20,8 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        // Getting the first item for testing purposes, in actual implementation this will be provided
-        // as an extra from the intent that starts this activity
-        List<Item> items = DataProvider.getItems();
-        Item item = items.get(7);
+        Intent intent = getIntent();
+        Item item = (Item) intent.getSerializableExtra("bike");
         String[] images = item.getImageFileNameList();
 
         ViewPager2 viewPager = findViewById(R.id.view_pager);

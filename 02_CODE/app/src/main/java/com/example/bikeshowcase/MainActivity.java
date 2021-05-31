@@ -5,14 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewItemAdapter.OnItemClickListener {
 
     public final static String EXTRA_MESSAGE = "";
+    private RecyclerViewItemAdapter mRecyclerViewItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 Intent searchIntent = new Intent(MainActivity.this, ListActivity.class);
                 String message = "Search results for \"" + query + "\"";
-                searchIntent.putExtra(EXTRA_MESSAGE, message);
+                searchIntent.putExtra(EXTRA_MESSAGE, message); // Send user's search query
                 startActivity(searchIntent);
                 return false;
             }
@@ -69,5 +75,34 @@ public class MainActivity extends AppCompatActivity {
         Drawable blueIcon = icon.getDrawable();
         blueIcon.setTint(R.attr.colorSecondaryVariant);
         icon.setImageDrawable(blueIcon);
+
+        RecyclerView recyclerView = findViewById(R.id.top_picks_view);
+        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(horizontalLayoutManager);
+
+        List<Item> mostVisitedItems = DataProvider.getItemsOrderedByVisits();
+        mRecyclerViewItemAdapter = new RecyclerViewItemAdapter(this, R.layout.bike_recycler_view_item, mostVisitedItems, this);
+        recyclerView.setAdapter(mRecyclerViewItemAdapter);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        // Start a details activity and pass the current item
+        Intent detailsIntent = new Intent(MainActivity.this, DetailsActivity.class);
+        Item item = mRecyclerViewItemAdapter.getItem(position);
+        detailsIntent.putExtra("bike", item);
+        startActivity(detailsIntent);
+
+        DataProvider.incrementItemViewCount(item);
+    }
+
+    // This method updates the items for the adapter with the most visited items
+    // each time the MainActivity is resumed
+    @Override
+    protected void onResume() {
+        super.onResume();
+        List<Item> mostVisitedItems = DataProvider.getItemsOrderedByVisits();
+        this.mRecyclerViewItemAdapter.setItems(mostVisitedItems);
+        this.mRecyclerViewItemAdapter.notifyDataSetChanged();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.bikeshowcase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -371,5 +372,29 @@ public class DataProvider {
                         .setPrice(625)
                         .setImageFileNameList(new String[]{"jett_16_1", "jett_16_2", "jett_16_3"}), 0);
 
+    }
+
+    public static void incrementItemViewCount(Item item) {
+        Integer counter = itemVisits.get(item);
+        if (counter == null) {
+            counter = 0;
+        }
+        counter++;
+        itemVisits.put(item, counter);
+    }
+
+    // This method sorts map entries in descending order based on their key
+    // (representing number of visits) and then returns the sorted list of items
+    public static List<Item> getItemsOrderedByVisits() {
+        List<Map.Entry<Item, Integer>> entries = new ArrayList<>(itemVisits.entrySet());
+        // Sort in ascending order with custom comparator, then reverse to get descending order
+        Collections.sort(entries, (l1, l2) -> l1.getValue().compareTo(l2.getValue()));
+        Collections.reverse(entries);
+
+        List<Item> items = new ArrayList<>(entries.size());
+        for (Map.Entry<Item, Integer> entry : entries.subList(0, 10)) {     // Extract keys (items) from each entry
+            items.add(entry.getKey());
+        }
+        return items;
     }
 }
