@@ -16,14 +16,17 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_margin="16dp"
-            android:background="@drawable/background_primary_variant_round"
+            android:background="@drawable/background_secondary_round"
             android:elevation="3dp"
+            android:textColorHint="#000000"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:queryBackground="@android:color/transparent"
             app:queryHint="@string/search_bar_query"
-            app:queryBackground="@android:color/transparent"/>
+            app:searchHintIcon="@drawable/ic_baseline_search_24"
+            app:searchIcon="@drawable/ic_baseline_search_24" />
 
         <TextView
             android:id="@+id/text_view"
@@ -62,7 +65,7 @@
                     style="@style/CategoryImageViewStyle"
                     android:contentDescription="@string/road_image_description"
                     android:src="@drawable/ic_road"
-                    app:tint="?colorSecondary"/>
+                    app:tint="?colorSecondaryVariant"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -85,7 +88,7 @@
                     style="@style/CategoryImageViewStyle"
                     android:contentDescription="@string/mountain_image_description"
                     android:src="@drawable/ic_mountain"
-                    app:tint="?colorSecondary"/>
+                    app:tint="?colorSecondaryVariant"/>
 
                 <TextView
                     style="@style/CategoryTextViewStyle"
@@ -105,7 +108,7 @@
                     style="@style/CategoryImageViewStyle"
                     android:contentDescription="@string/adventure_image_description"
                     android:src="@drawable/ic_globe_europe"
-                    app:tint="?colorSecondary"/>
+                    app:tint="?colorSecondaryVariant"/>
 
                 <TextView
                     style="@style/CategoryTextViewStyle"
@@ -126,7 +129,7 @@
                     style="@style/CategoryImageViewStyle"
                     android:contentDescription="@string/kids_image_description"
                     android:src="@drawable/ic_baby"
-                    app:tint="?colorSecondary"/>
+                    app:tint="?colorSecondaryVariant"/>
 
                 <TextView
                     style="@style/CategoryTextViewStyle"

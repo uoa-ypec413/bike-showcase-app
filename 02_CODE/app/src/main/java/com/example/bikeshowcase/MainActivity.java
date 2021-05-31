@@ -71,11 +71,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewItemA
             startActivity(kidsCategoryIntent);
         });
 
-        ImageView icon = findViewById(com.google.android.material.R.id.search_mag_icon);
-        Drawable blueIcon = icon.getDrawable();
-        blueIcon.setTint(R.attr.colorSecondaryVariant);
-        icon.setImageDrawable(blueIcon);
-
         RecyclerView recyclerView = findViewById(R.id.top_picks_view);
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(horizontalLayoutManager);

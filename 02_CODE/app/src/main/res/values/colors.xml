@@ -9,6 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey_50">#FAFAFA</color>
     <color name="grey_200">#eeeeee</color>
-    <color name="indigo_500">#3949AB</color>
-    <color name="indigo_500_dark">#00227b</color>
+    <color name="green_200">#a5d6a7</color>
+    <color name="green_200_dark">#75a478</color>
 </resources>
