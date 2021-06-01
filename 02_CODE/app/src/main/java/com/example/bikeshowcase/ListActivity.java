@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -13,11 +16,15 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        TextView textView = findViewById(R.id.title_text_view);
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-        textView.setText(message);
+
+        List<Item> itemsList = DataProvider.getCategoryItems(message);
+        ItemAdapter itemsAdapter = new ItemAdapter(this,
+                R.layout.item_list_view_item, itemsList);
+        ListView listView = (ListView) findViewById(R.id.ListView);
+        listView.setAdapter(itemsAdapter);
     }
 }
