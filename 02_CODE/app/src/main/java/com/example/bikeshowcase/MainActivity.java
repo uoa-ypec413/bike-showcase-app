@@ -9,6 +9,7 @@ import android.os.Parcelable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import androidx.appcompat.widget.SearchView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,28 +44,28 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewItemA
             }
         });
 
-        RelativeLayout roadCategory = findViewById(R.id.road_category);
+        ConstraintLayout roadCategory = findViewById(R.id.road_constraint_layout);
         roadCategory.setOnClickListener(v -> {
             Intent roadCategoryIntent = new Intent(MainActivity.this, ListActivity.class);
             roadCategoryIntent.putExtra(EXTRA_MESSAGE, getString(R.string.road_category_name));
             startActivity(roadCategoryIntent);
         });
 
-        RelativeLayout mountainCategory = findViewById(R.id.mountain_category);
+        ConstraintLayout mountainCategory = findViewById(R.id.mountain_constraint_layout);
         mountainCategory.setOnClickListener(v -> {
             Intent mountainCategoryIntent = new Intent(MainActivity.this, ListActivity.class);
             mountainCategoryIntent.putExtra(EXTRA_MESSAGE, getString(R.string.mountain_category_name));
             startActivity(mountainCategoryIntent);
         });
 
-        RelativeLayout adventureCategory = findViewById(R.id.adventure_category);
+        ConstraintLayout adventureCategory = findViewById(R.id.adventure_constraint_layout);
         adventureCategory.setOnClickListener(v -> {
             Intent adventureCategoryIntent = new Intent(MainActivity.this, ListActivity.class);
             adventureCategoryIntent.putExtra(EXTRA_MESSAGE, getString(R.string.adventure_category_name));
             startActivity(adventureCategoryIntent);
         });
 
-        RelativeLayout kidsCategory = findViewById(R.id.kids_category);
+        ConstraintLayout kidsCategory = findViewById(R.id.kids_constraint_layout);
         kidsCategory.setOnClickListener(v -> {
             Intent kidsCategoryIntent = new Intent(MainActivity.this, ListActivity.class);
             kidsCategoryIntent.putExtra(EXTRA_MESSAGE, getString(R.string.kids_category_name));

@@ -9,14 +9,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        android:paddingBottom="10dp"
+        android:clipToPadding="false">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_margin="16dp"
-            android:background="@drawable/background_secondary_round"
+            android:background="@drawable/background_primary_variant_round"
             android:elevation="3dp"
             android:textColorHint="#000000"
             app:iconifiedByDefault="false"
@@ -48,97 +50,125 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_view"/>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/road_card_view"
+            style="@style/CategoryCardViewStyle"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/top_picks_view">
 
-            <RelativeLayout
-                android:id="@+id/road_category"
-                style="@style/CategoryRelativeLayoutStyle">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/road_constraint_layout"
+                style="@style/CategoryConstraintLayoutStyle">
 
                 <ImageView
                     android:id="@+id/road_image_view"
                     style="@style/CategoryImageViewStyle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:contentDescription="@string/road_image_description"
-                    android:src="@drawable/ic_road"
-                    app:tint="?colorSecondaryVariant"/>
+                    android:src="@drawable/ic_road"/>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/road_image_view"
-                    android:layout_alignBottom="@id/road_image_view"
-                    android:layout_toEndOf="@id/road_image_view"
-                    android:gravity="center"
-                    android:text="@string/road_image_description"
-                    android:textAppearance="?attr/textAppearanceHeadline5"/>
+                    style="@style/CategoryTextViewStyle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/road_image_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/road_image_description"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-            </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mountain_card_view"
+            style="@style/CategoryCardViewStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/road_card_view">
 
-            <RelativeLayout
-                android:id="@+id/mountain_category"
-                style="@style/CategoryRelativeLayoutStyle">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/mountain_constraint_layout"
+                style="@style/CategoryConstraintLayoutStyle">
 
                 <ImageView
                     android:id="@+id/mountain_image_view"
                     style="@style/CategoryImageViewStyle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:contentDescription="@string/mountain_image_description"
-                    android:src="@drawable/ic_mountain"
-                    app:tint="?colorSecondaryVariant"/>
+                    android:src="@drawable/ic_mountain"/>
 
                 <TextView
                     style="@style/CategoryTextViewStyle"
-                    android:layout_toEndOf="@id/mountain_image_view"
-                    android:layout_alignTop="@id/mountain_image_view"
-                    android:layout_alignBottom="@id/mountain_image_view"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/mountain_image_view"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:text="@string/mountain_image_description"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-            </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/adventure_card_view"
+            style="@style/CategoryCardViewStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mountain_card_view">
 
-            <RelativeLayout
-                android:id="@+id/adventure_category"
-                style="@style/CategoryRelativeLayoutStyle">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/adventure_constraint_layout"
+                style="@style/CategoryConstraintLayoutStyle">
 
                 <ImageView
                     android:id="@+id/adventure_image_view"
                     style="@style/CategoryImageViewStyle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:contentDescription="@string/adventure_image_description"
-                    android:src="@drawable/ic_globe_europe"
-                    app:tint="?colorSecondaryVariant"/>
+                    android:src="@drawable/ic_globe_europe"/>
 
                 <TextView
                     style="@style/CategoryTextViewStyle"
-                    android:layout_toEndOf="@id/adventure_image_view"
-                    android:layout_alignTop="@id/adventure_image_view"
-                    android:layout_alignBottom="@id/adventure_image_view"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/adventure_image_view"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:text="@string/adventure_image_description"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-            </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/kids_card_view"
+            style="@style/CategoryCardViewStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/adventure_card_view">
 
-            <RelativeLayout
-                android:id="@+id/kids_category"
-                style="@style/CategoryRelativeLayoutStyle"
-                android:layout_marginBottom="16dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/kids_constraint_layout"
+                style="@style/CategoryConstraintLayoutStyle">
 
                 <ImageView
                     android:id="@+id/kids_image_view"
                     style="@style/CategoryImageViewStyle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:contentDescription="@string/kids_image_description"
-                    android:src="@drawable/ic_baby"
-                    app:tint="?colorSecondaryVariant"/>
+                    android:src="@drawable/ic_baby"/>
 
                 <TextView
                     style="@style/CategoryTextViewStyle"
-                    android:layout_toEndOf="@id/kids_image_view"
-                    android:layout_alignTop="@id/kids_image_view"
-                    android:layout_alignBottom="@id/kids_image_view"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/kids_image_view"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:text="@string/kids_image_description"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-            </RelativeLayout>
-        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
