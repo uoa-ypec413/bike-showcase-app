@@ -11,14 +11,15 @@
         android:layout_height="wrap_content"
         tools:context=".DetailsActivity"
         android:background="?colorPrimary"
-        android:layout_marginBottom="10dp">
+        android:paddingBottom="10dp"
+        android:clipToPadding="false">
 
         <FrameLayout
             android:id="@+id/frame_layout"
             android:layout_width="match_parent"
             android:layout_height="280dp"
-            android:layout_marginTop="10dp"
-            android:elevation="5dp"
+            android:background="@color/white"
+            android:elevation="3dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
