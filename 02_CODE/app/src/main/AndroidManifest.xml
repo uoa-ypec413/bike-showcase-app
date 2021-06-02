@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BikeShowcase">
-        <activity android:name=".CategoryActivity"></activity>
+        <activity android:name=".ListActivity"></activity>
         <activity android:name=".DetailsActivity" />
         <activity android:name=".ListActivity" />
         <activity android:name=".MainActivity">

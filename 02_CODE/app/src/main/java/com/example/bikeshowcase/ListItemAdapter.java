@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapter.CategoryViewHolder> {
+public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.CategoryViewHolder> {
 
     private List<Item> mItems;
     private Context mContext;
-    private CategoryItemAdapter.OnItemClickListener mOnItemClickListener;
+    private ListItemAdapter.OnItemClickListener mOnItemClickListener;
 
-    public CategoryItemAdapter(Context context, List<Item> items, CategoryItemAdapter.OnItemClickListener onItemClickListener){
+    public ListItemAdapter(Context context, List<Item> items, ListItemAdapter.OnItemClickListener onItemClickListener){
         this.mContext = context;
         this.mItems = items;
         this.mOnItemClickListener = onItemClickListener;
