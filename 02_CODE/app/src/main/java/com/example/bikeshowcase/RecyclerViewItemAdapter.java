@@ -41,8 +41,9 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
 
         //Get the bike object for the current position
         Item currentItem = getItem(position);
+        String imageFileName = currentItem.getImageFileNameList()[1] + "_ldpi";
         int i = mContext.getResources().getIdentifier(
-                currentItem.getImageFileNameList()[1], "drawable",
+                imageFileName, "drawable",
                 mContext.getPackageName());
 
         holder.bikeImageView.setImageResource(i);
