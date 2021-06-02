@@ -10,6 +10,7 @@ import android.transition.Explode;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -33,8 +34,10 @@ public class DetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Item item = (Item) intent.getSerializableExtra("bike");
         String[] images = item.getImageFileNameList();
-        for(int i = 0; i< images.length; i++){
-            images[i] = images[i] + "_xxhdpi";
+        if(savedInstanceState == null) {
+            for(int i = 0; i< images.length; i++){
+                images[i] = images[i] + "_xxhdpi";
+            }
         }
 
         ViewPager2 viewPager = findViewById(R.id.view_pager);
@@ -62,5 +65,21 @@ public class DetailsActivity extends AppCompatActivity {
         rightNav.setOnClickListener(v -> {
             viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
         });
+
+        ImageView imageView = findViewById(R.id.category_image_view);
+        switch(item.getCategory()) {
+            case "Road Bikes":
+                imageView.setImageResource(R.drawable.ic_road);
+                break;
+            case "Mountain Bikes":
+                imageView.setImageResource(R.drawable.ic_mountain);
+                break;
+            case "Adventure Bikes":
+                imageView.setImageResource(R.drawable.ic_globe_europe);
+                break;
+            case "Kids Bikes":
+                imageView.setImageResource(R.drawable.ic_baby);
+                break;
+        }
     }
 }

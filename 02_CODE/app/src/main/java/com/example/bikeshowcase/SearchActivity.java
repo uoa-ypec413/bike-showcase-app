@@ -12,4 +12,9 @@ public class SearchActivity extends ListActivity {
     public void populateItemsList(String message) {
         this.items = DataProvider.getSearchItems(message);
     }
+
+    @Override
+    public void setTitle(String message) {
+        this.titleTextView.setText("Search results for " + "\"" + message +"\"");
+    }
 }

@@ -18,6 +18,7 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
     protected List<Item> items;
     protected RecyclerView recyclerView;
     protected ListItemAdapter listItemAdapter;
+    protected TextView titleTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +30,23 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
 
         this.populateItemsList(message);
 
+        this.titleTextView = findViewById(R.id.list_title_view);
+
         if(this.items.isEmpty()){
-            View view = findViewById(R.id.list_constraint_layout);
-            Snackbar snackbar = Snackbar.make(view, "Sorry, no matches found!", Snackbar.LENGTH_LONG);
-            snackbar.setAction("GO BACK", v -> finish());
-            snackbar.setActionTextColor(Color.BLACK);
-            View snackBarView = snackbar.getView();
-            snackBarView.setBackgroundResource(R.drawable.background_primary_variant_round);
-            TextView textView = snackBarView.findViewById(com.google.android.material.R.id.snackbar_text);
-            textView.setTextColor(Color.BLACK);
-            snackbar.show();
+            this.titleTextView.setText("Sorry, no matches found!");
+
+//            View view = findViewById(R.id.list_constraint_layout);
+//            Snackbar snackbar = Snackbar.make(view, "Sorry, no matches found!", Snackbar.LENGTH_LONG);
+//            snackbar.setAction("GO BACK", v -> finish());
+//            snackbar.setActionTextColor(Color.BLACK);
+//            View snackBarView = snackbar.getView();
+//            snackBarView.setBackgroundResource(R.drawable.background_primary_variant_round);
+//            TextView textView = snackBarView.findViewById(com.google.android.material.R.id.snackbar_text);
+//            textView.setTextColor(Color.BLACK);
+//            snackbar.show();
 
         } else {
+            setTitle(message);
             this.recyclerView = findViewById(R.id.list_recycler_view);
             this.listItemAdapter = new ListItemAdapter(this, this.items, this);
             recyclerView.setAdapter(listItemAdapter);
@@ -60,4 +66,5 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
     }
 
     public abstract void populateItemsList(String message);
+    public abstract void setTitle(String message);
 }
