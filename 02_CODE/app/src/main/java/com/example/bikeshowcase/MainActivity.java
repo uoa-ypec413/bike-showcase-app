@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import androidx.appcompat.widget.SearchView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,38 +41,33 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewItemA
             }
         });
 
-        RelativeLayout roadCategory = findViewById(R.id.road_category);
+        ConstraintLayout roadCategory = findViewById(R.id.road_constraint_layout);
         roadCategory.setOnClickListener(v -> {
             Intent roadCategoryIntent = new Intent(MainActivity.this, CategoryActivity.class);
             roadCategoryIntent.putExtra(EXTRA_MESSAGE, getString(R.string.road_category_name));
             startActivity(roadCategoryIntent);
         });
 
-        RelativeLayout mountainCategory = findViewById(R.id.mountain_category);
+        ConstraintLayout mountainCategory = findViewById(R.id.mountain_constraint_layout);
         mountainCategory.setOnClickListener(v -> {
             Intent mountainCategoryIntent = new Intent(MainActivity.this, CategoryActivity.class);
             mountainCategoryIntent.putExtra(EXTRA_MESSAGE, getString(R.string.mountain_category_name));
             startActivity(mountainCategoryIntent);
         });
 
-        RelativeLayout adventureCategory = findViewById(R.id.adventure_category);
+        ConstraintLayout adventureCategory = findViewById(R.id.adventure_constraint_layout);
         adventureCategory.setOnClickListener(v -> {
             Intent adventureCategoryIntent = new Intent(MainActivity.this, CategoryActivity.class);
             adventureCategoryIntent.putExtra(EXTRA_MESSAGE, getString(R.string.adventure_category_name));
             startActivity(adventureCategoryIntent);
         });
 
-        RelativeLayout kidsCategory = findViewById(R.id.kids_category);
+        ConstraintLayout kidsCategory = findViewById(R.id.kids_constraint_layout);
         kidsCategory.setOnClickListener(v -> {
             Intent kidsCategoryIntent = new Intent(MainActivity.this, CategoryActivity.class);
             kidsCategoryIntent.putExtra(EXTRA_MESSAGE, getString(R.string.kids_category_name));
             startActivity(kidsCategoryIntent);
         });
-
-        ImageView icon = findViewById(com.google.android.material.R.id.search_mag_icon);
-        Drawable blueIcon = icon.getDrawable();
-        blueIcon.setTint(R.attr.colorSecondaryVariant);
-        icon.setImageDrawable(blueIcon);
 
         RecyclerView recyclerView = findViewById(R.id.top_picks_view);
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);

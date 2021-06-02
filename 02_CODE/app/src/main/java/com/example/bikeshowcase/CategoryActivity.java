@@ -10,4 +10,9 @@ public class CategoryActivity extends ListActivity {
     public void populateItemsList(String message) {
         this.items =  DataProvider.getCategoryItems(message);
     }
+
+    @Override
+    public void setTitle(String message) {
+        this.titleTextView.setText(message);
+    }
 }
