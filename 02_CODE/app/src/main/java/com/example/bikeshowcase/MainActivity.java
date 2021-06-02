@@ -45,28 +45,28 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewItemA
 
         RelativeLayout roadCategory = findViewById(R.id.road_category);
         roadCategory.setOnClickListener(v -> {
-            Intent roadCategoryIntent = new Intent(MainActivity.this, ListActivity.class);
+            Intent roadCategoryIntent = new Intent(MainActivity.this, CategoryActivity.class);
             roadCategoryIntent.putExtra(EXTRA_MESSAGE, getString(R.string.road_category_name));
             startActivity(roadCategoryIntent);
         });
 
         RelativeLayout mountainCategory = findViewById(R.id.mountain_category);
         mountainCategory.setOnClickListener(v -> {
-            Intent mountainCategoryIntent = new Intent(MainActivity.this, ListActivity.class);
+            Intent mountainCategoryIntent = new Intent(MainActivity.this, CategoryActivity.class);
             mountainCategoryIntent.putExtra(EXTRA_MESSAGE, getString(R.string.mountain_category_name));
             startActivity(mountainCategoryIntent);
         });
 
         RelativeLayout adventureCategory = findViewById(R.id.adventure_category);
         adventureCategory.setOnClickListener(v -> {
-            Intent adventureCategoryIntent = new Intent(MainActivity.this, ListActivity.class);
+            Intent adventureCategoryIntent = new Intent(MainActivity.this, CategoryActivity.class);
             adventureCategoryIntent.putExtra(EXTRA_MESSAGE, getString(R.string.adventure_category_name));
             startActivity(adventureCategoryIntent);
         });
 
         RelativeLayout kidsCategory = findViewById(R.id.kids_category);
         kidsCategory.setOnClickListener(v -> {
-            Intent kidsCategoryIntent = new Intent(MainActivity.this, ListActivity.class);
+            Intent kidsCategoryIntent = new Intent(MainActivity.this, CategoryActivity.class);
             kidsCategoryIntent.putExtra(EXTRA_MESSAGE, getString(R.string.kids_category_name));
             startActivity(kidsCategoryIntent);
         });
