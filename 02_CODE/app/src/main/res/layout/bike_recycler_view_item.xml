@@ -3,7 +3,7 @@
     android:layout_width="170dp"
     android:layout_height="match_parent"
     android:layout_margin="5dp"
-    android:padding="10dp"
+    android:padding="5dp"
     android:orientation="vertical"
     android:background="@drawable/background_primary_variant_round"
     android:elevation="3dp">
@@ -19,7 +19,7 @@
     <TextView
         android:id="@+id/bike_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="Bike Title"
         android:gravity="center"
         android:textAppearance="?attr/textAppearanceSubtitle1"/>

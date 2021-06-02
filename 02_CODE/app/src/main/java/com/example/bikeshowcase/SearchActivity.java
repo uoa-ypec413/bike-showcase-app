@@ -10,6 +10,11 @@ public class SearchActivity extends ListActivity {
 
     @Override
     public void populateItemsList(String message) {
-        this.itemsList = DataProvider.getSearchItems(message);
+        this.items = DataProvider.getSearchItems(message);
+    }
+
+    @Override
+    public void setTitle(String message) {
+        this.titleTextView.setText("Search results for " + "\"" + message +"\"");
     }
 }
