@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -54,5 +55,21 @@ public class DetailsActivity extends AppCompatActivity {
         rightNav.setOnClickListener(v -> {
             viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
         });
+
+        ImageView imageView = findViewById(R.id.category_image_view);
+        switch(item.getCategory()) {
+            case "Road Bikes":
+                imageView.setImageResource(R.drawable.ic_road);
+                break;
+            case "Mountain Bikes":
+                imageView.setImageResource(R.drawable.ic_mountain);
+                break;
+            case "Adventure Bikes":
+                imageView.setImageResource(R.drawable.ic_globe_europe);
+                break;
+            case "Kids Bikes":
+                imageView.setImageResource(R.drawable.ic_baby);
+                break;
+        }
     }
 }
