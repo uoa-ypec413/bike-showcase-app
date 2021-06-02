@@ -5,31 +5,46 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-
+import android.view.View;
+import android.widget.TextView;
 import java.util.List;
+import com.google.android.material.snackbar.Snackbar;
 
-public class ListActivity extends AppCompatActivity implements ListItemAdapter.OnItemClickListener{
+public abstract class ListActivity extends AppCompatActivity implements ListItemAdapter.OnItemClickListener {
 
-    private RecyclerView recyclerView;
-    private ListItemAdapter listItemAdapter;
+    protected List<Item> items;
+    protected RecyclerView recyclerView;
+    protected ListItemAdapter listItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        recyclerView = findViewById(R.id.list_recycler_view);
-
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-        List<Item> items = DataProvider.getCategoryItems(message);
+        this.populateItemsList(message);
 
+        if(this.items.isEmpty()){
+            View view = findViewById(R.id.list_constraint_layout);
+            Snackbar snackbar = Snackbar.make(view, "Sorry, no matches found!", Snackbar.LENGTH_LONG);
+            snackbar.setAction("GO BACK", v -> finish());
+            snackbar.setActionTextColor(Color.BLACK);
+            View snackBarView = snackbar.getView();
+            snackBarView.setBackgroundResource(R.drawable.background_primary_variant_round);
+            TextView textView = snackBarView.findViewById(com.google.android.material.R.id.snackbar_text);
+            textView.setTextColor(Color.BLACK);
+            snackbar.show();
 
-        listItemAdapter = new ListItemAdapter(this, items, this);
-        recyclerView.setAdapter(listItemAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        } else {
+            this.recyclerView = findViewById(R.id.list_recycler_view);
+            this.listItemAdapter = new ListItemAdapter(this, this.items, this);
+            recyclerView.setAdapter(listItemAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        }
     }
 
     public void onItemClick(int position) {
@@ -41,4 +56,6 @@ public class ListActivity extends AppCompatActivity implements ListItemAdapter.O
 
         DataProvider.incrementItemViewCount(item);
     }
+
+    public abstract void populateItemsList(String message);
 }
