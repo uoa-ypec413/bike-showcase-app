@@ -2,6 +2,7 @@ package com.example.bikeshowcase;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -85,10 +86,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewItemA
     @Override
     public void onItemClick(int position) {
         // Start a details activity and pass the current item
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this);
         Intent detailsIntent = new Intent(MainActivity.this, DetailsActivity.class);
         Item item = mRecyclerViewItemAdapter.getItem(position);
         detailsIntent.putExtra("bike", item);
-        startActivity(detailsIntent);
+        startActivity(detailsIntent, options.toBundle());
 
         DataProvider.incrementItemViewCount(item);
     }

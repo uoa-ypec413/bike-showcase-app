@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -49,10 +50,11 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
 
     public void onItemClick(int position) {
         // Start a details activity and pass the current item
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this);
         Intent detailsIntent = new Intent(ListActivity.this, DetailsActivity.class);
         Item item = listItemAdapter.getItem(position);
         detailsIntent.putExtra("bike", item);
-        startActivity(detailsIntent);
+        startActivity(detailsIntent, options.toBundle());
 
         DataProvider.incrementItemViewCount(item);
     }
