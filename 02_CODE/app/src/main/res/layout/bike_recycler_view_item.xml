@@ -14,7 +14,7 @@
         android:layout_height="150dp"
         android:padding="5dp"
         android:background = "@color/white"
-        android:src="@drawable/demo_1"/>
+        android:src="@drawable/demo_1_ldpi"/>
 
     <TextView
         android:id="@+id/bike_text_view"

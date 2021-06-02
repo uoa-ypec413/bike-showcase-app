@@ -23,6 +23,9 @@ public class DetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Item item = (Item) intent.getSerializableExtra("bike");
         String[] images = item.getImageFileNameList();
+        for(int i = 0; i< images.length; i++){
+            images[i] = images[i] + "_xxhdpi";
+        }
 
         ViewPager2 viewPager = findViewById(R.id.view_pager);
         mViewPagerAdapter = new ViewPagerAdapter(this, R.layout.image_view_pager, images);

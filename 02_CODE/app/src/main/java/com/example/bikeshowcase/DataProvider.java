@@ -410,4 +410,22 @@ public class DataProvider {
         }
         return items;
     }
+
+    public static List<Item> getSearchItems(String searchQuery) {
+        List<Item> items = new ArrayList<>();
+
+        for (Map.Entry<Item, Integer> entry: itemVisits.entrySet()) {
+            Item currentItem = entry.getKey();
+
+            if ((currentItem.getCategory().toLowerCase()).contains(searchQuery.toLowerCase())) {
+                items.add(entry.getKey());
+            } else if ((currentItem.getItemTitle().toLowerCase()).contains(searchQuery.toLowerCase())) {
+                items.add(entry.getKey());
+            } else if ((currentItem.getDescription().toLowerCase()).contains(searchQuery.toLowerCase())) {
+                items.add(entry.getKey());
+            } else if ((currentItem.getColour().toLowerCase()).contains(searchQuery.toLowerCase()))
+                items.add(entry.getKey());
+        }
+        return items;
+    }
 }
