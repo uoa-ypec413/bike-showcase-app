@@ -38,11 +38,12 @@
 
         <TextView
             android:id="@+id/item_colour_view"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="colour"
             android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/item_price_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_title_view" />
 
