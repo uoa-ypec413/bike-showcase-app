@@ -1,11 +1,14 @@
 package com.example.bikeshowcase;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +21,13 @@ public class DetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+
+        Explode enterTransition = new Explode();
+        enterTransition.setDuration(600);
+        getWindow().setEnterTransition(enterTransition);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
