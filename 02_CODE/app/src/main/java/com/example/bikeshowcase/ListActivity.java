@@ -60,7 +60,13 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
         DataProvider.incrementItemViewCount(item);
     }
 
-    public void sortItemsByAlphabeticalOrder() {
+    public void sortItemsByAlphabeticalOrder(boolean ascending) {
         Collections.sort(items, (l1, l2) -> l1.getItemTitle().compareTo(l2.getItemTitle()));
+        if (ascending == false) { Collections.reverse(items); }
+    }
+
+    public void sortItemsByPrice(boolean ascending) {
+        Collections.sort(items, (l1, l2) -> l1.getPrice().compareTo(l2.getPrice()));
+        if (ascending == false) { Collections.reverse(items); }
     }
 }
