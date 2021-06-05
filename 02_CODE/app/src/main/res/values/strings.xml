@@ -11,4 +11,10 @@
     <string name="mountain_category_name">Mountain Bikes</string>
     <string name="adventure_category_name">Adventure Bikes</string>
     <string name="kids_category_name">Kids Bikes</string>
+    <string-array name="sort_options_array">
+        <item>Name: A-Z</item>
+        <item>Name: Z-A</item>
+        <item>Price: Low to High</item>
+        <item>Price: High to Low</item>
+    </string-array>
 </resources>
