@@ -37,12 +37,13 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.Catego
         return new CategoryViewHolder(view, mOnItemClickListener);
     }
 
+    //creates the item cards from item data
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         holder.title.setText(mItems.get(position).getItemTitle());
         holder.colour.setText(mItems.get(position).getColour());
         holder.price.setText("$" + mItems.get(position).getPrice().toString());
-        String imageFileName = mItems.get(position).getImageFileNameList()[1] + "_ldpi";
+        String imageFileName = mItems.get(position).getImageFileNameList()[1] + "_ldpi"; //uses the low res image for thumbnails
         int i = mContext.getResources().getIdentifier(
                 imageFileName, "drawable",
                 mContext.getPackageName());

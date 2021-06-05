@@ -36,7 +36,7 @@ public class DetailsActivity extends AppCompatActivity {
         String[] images = item.getImageFileNameList();
         if(savedInstanceState == null) {
             for(int i = 0; i< images.length; i++){
-                images[i] = images[i] + "_xxhdpi";
+                images[i] = images[i] + "_xxhdpi"; // uses high res images for detail view
             }
         }
 

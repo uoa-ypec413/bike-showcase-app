@@ -32,6 +32,7 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
 
         this.titleTextView = findViewById(R.id.list_title_view);
 
+        //if search returned no results
         if(this.items.isEmpty()){
             this.titleTextView.setText("Sorry, no matches found!");
 
