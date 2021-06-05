@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class DataProvider {
 
+    //Creates the data map for our app. More items can be added following the same format as below.
     private static Map<Item, Integer> itemVisits = new LinkedHashMap<>();
-
     static {
         itemVisits.put(
                 new Item()

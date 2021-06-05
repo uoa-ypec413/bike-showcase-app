@@ -36,7 +36,6 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         this.populateItemsList(message);
-
         this.listToolBar = findViewById(R.id.list_toolbar);
         this.titleTextView = findViewById(R.id.list_text_view);
         this.spinner = findViewById(R.id.spinner);
