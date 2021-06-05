@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,6 +24,8 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
     protected ListItemAdapter listItemAdapter;
     protected Toolbar listToolBar;
     protected TextView titleTextView;
+    protected Spinner spinner;
+    protected ArrayAdapter<CharSequence> spinnerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,23 +39,47 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
 
         this.listToolBar = findViewById(R.id.list_toolbar);
         this.titleTextView = findViewById(R.id.list_text_view);
+        this.spinner = findViewById(R.id.spinner);
 
-        if(this.items.isEmpty()){
-            this.listToolBar.setTitle("Sorry, no matches found!");
+        setTitle(message);
 
-        } else {
-            setTitle(message);
+        if(!this.items.isEmpty()){
             this.recyclerView = findViewById(R.id.list_recycler_view);
             this.listItemAdapter = new ListItemAdapter(this, this.items, this);
             recyclerView.setAdapter(listItemAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.sort_options_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        this.spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.sort_options_array, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                sortItemsByAlphabeticalOrder(true);
+            }
+
+            @Override
+            public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
+                String selectedItem = adapter.getItemAtPosition(i).toString();
+                switch(selectedItem){
+                    case "Name: A-Z":
+                        sortItemsByAlphabeticalOrder(true);
+                        break;
+                    case "Name: Z-A":
+                        sortItemsByAlphabeticalOrder(false);
+                        break;
+                    case "Price: Low to High":
+                        sortItemsByPrice(true);
+                        break;
+                    case "Price: High to Low":
+                        sortItemsByPrice(false);
+                        break;
+                }
+                listItemAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     public abstract void populateItemsList(String message);
