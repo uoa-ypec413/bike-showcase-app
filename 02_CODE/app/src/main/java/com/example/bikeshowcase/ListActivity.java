@@ -10,6 +10,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.Collections;
 import java.util.List;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -35,16 +37,6 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
         if(this.items.isEmpty()){
             this.titleTextView.setText("Sorry, no matches found!");
 
-//            View view = findViewById(R.id.list_constraint_layout);
-//            Snackbar snackbar = Snackbar.make(view, "Sorry, no matches found!", Snackbar.LENGTH_LONG);
-//            snackbar.setAction("GO BACK", v -> finish());
-//            snackbar.setActionTextColor(Color.BLACK);
-//            View snackBarView = snackbar.getView();
-//            snackBarView.setBackgroundResource(R.drawable.background_primary_variant_round);
-//            TextView textView = snackBarView.findViewById(com.google.android.material.R.id.snackbar_text);
-//            textView.setTextColor(Color.BLACK);
-//            snackbar.show();
-
         } else {
             setTitle(message);
             this.recyclerView = findViewById(R.id.list_recycler_view);
@@ -53,6 +45,9 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
     }
+
+    public abstract void populateItemsList(String message);
+    public abstract void setTitle(String message);
 
     public void onItemClick(int position) {
         // Start a details activity and pass the current item
@@ -65,6 +60,7 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
         DataProvider.incrementItemViewCount(item);
     }
 
-    public abstract void populateItemsList(String message);
-    public abstract void setTitle(String message);
+    public void sortItemsByAlphabeticalOrder() {
+        Collections.sort(items, (l1, l2) -> l1.getItemTitle().compareTo(l2.getItemTitle()));
+    }
 }
