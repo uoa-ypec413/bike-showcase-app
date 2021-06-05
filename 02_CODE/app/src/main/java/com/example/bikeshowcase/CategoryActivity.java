@@ -13,6 +13,6 @@ public class CategoryActivity extends ListActivity {
 
     @Override
     public void setTitle(String message) {
-        this.titleTextView.setText(message);
+        this.listToolBar.setTitle(message);
     }
 }

@@ -1,25 +1,26 @@
 package com.example.bikeshowcase;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.List;
-import com.google.android.material.snackbar.Snackbar;
 
 public abstract class ListActivity extends AppCompatActivity implements ListItemAdapter.OnItemClickListener {
 
     protected List<Item> items;
     protected RecyclerView recyclerView;
     protected ListItemAdapter listItemAdapter;
+    protected Toolbar listToolBar;
     protected TextView titleTextView;
 
     @Override
@@ -32,10 +33,11 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
 
         this.populateItemsList(message);
 
-        this.titleTextView = findViewById(R.id.list_title_view);
+        this.listToolBar = findViewById(R.id.list_toolbar);
+        this.titleTextView = findViewById(R.id.list_text_view);
 
         if(this.items.isEmpty()){
-            this.titleTextView.setText("Sorry, no matches found!");
+            this.listToolBar.setTitle("Sorry, no matches found!");
 
         } else {
             setTitle(message);
@@ -44,6 +46,12 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
             recyclerView.setAdapter(listItemAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.sort_options_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
 
     public abstract void populateItemsList(String message);
@@ -62,11 +70,11 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
 
     public void sortItemsByAlphabeticalOrder(boolean ascending) {
         Collections.sort(items, (l1, l2) -> l1.getItemTitle().compareTo(l2.getItemTitle()));
-        if (ascending == false) { Collections.reverse(items); }
+        if (!ascending) { Collections.reverse(items); }
     }
 
     public void sortItemsByPrice(boolean ascending) {
         Collections.sort(items, (l1, l2) -> l1.getPrice().compareTo(l2.getPrice()));
-        if (ascending == false) { Collections.reverse(items); }
+        if (!ascending) { Collections.reverse(items); }
     }
 }
