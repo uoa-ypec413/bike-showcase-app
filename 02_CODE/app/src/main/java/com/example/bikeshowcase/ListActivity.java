@@ -1,24 +1,31 @@
 package com.example.bikeshowcase;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.Collections;
 import java.util.List;
-import com.google.android.material.snackbar.Snackbar;
 
 public abstract class ListActivity extends AppCompatActivity implements ListItemAdapter.OnItemClickListener {
 
     protected List<Item> items;
     protected RecyclerView recyclerView;
     protected ListItemAdapter listItemAdapter;
+    protected Toolbar listToolBar;
     protected TextView titleTextView;
+    protected Spinner spinner;
+    protected ArrayAdapter<CharSequence> spinnerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,29 +37,53 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
 
         this.populateItemsList(message);
 
-        this.titleTextView = findViewById(R.id.list_title_view);
+        this.listToolBar = findViewById(R.id.list_toolbar);
+        this.titleTextView = findViewById(R.id.list_text_view);
+        this.spinner = findViewById(R.id.spinner);
 
-        if(this.items.isEmpty()){
-            this.titleTextView.setText("Sorry, no matches found!");
+        setTitle(message);
 
-//            View view = findViewById(R.id.list_constraint_layout);
-//            Snackbar snackbar = Snackbar.make(view, "Sorry, no matches found!", Snackbar.LENGTH_LONG);
-//            snackbar.setAction("GO BACK", v -> finish());
-//            snackbar.setActionTextColor(Color.BLACK);
-//            View snackBarView = snackbar.getView();
-//            snackBarView.setBackgroundResource(R.drawable.background_primary_variant_round);
-//            TextView textView = snackBarView.findViewById(com.google.android.material.R.id.snackbar_text);
-//            textView.setTextColor(Color.BLACK);
-//            snackbar.show();
-
-        } else {
-            setTitle(message);
+        if(!this.items.isEmpty()){
             this.recyclerView = findViewById(R.id.list_recycler_view);
             this.listItemAdapter = new ListItemAdapter(this, this.items, this);
             recyclerView.setAdapter(listItemAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
+
+        this.spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.sort_options_array, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                sortItemsByAlphabeticalOrder(true);
+            }
+
+            @Override
+            public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
+                String selectedItem = adapter.getItemAtPosition(i).toString();
+                switch(selectedItem){
+                    case "Name: A-Z":
+                        sortItemsByAlphabeticalOrder(true);
+                        break;
+                    case "Name: Z-A":
+                        sortItemsByAlphabeticalOrder(false);
+                        break;
+                    case "Price: Low to High":
+                        sortItemsByPrice(true);
+                        break;
+                    case "Price: High to Low":
+                        sortItemsByPrice(false);
+                        break;
+                }
+                listItemAdapter.notifyDataSetChanged();
+            }
+        });
     }
+
+    public abstract void populateItemsList(String message);
+    public abstract void setTitle(String message);
 
     public void onItemClick(int position) {
         // Start a details activity and pass the current item
@@ -65,6 +96,13 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
         DataProvider.incrementItemViewCount(item);
     }
 
-    public abstract void populateItemsList(String message);
-    public abstract void setTitle(String message);
+    public void sortItemsByAlphabeticalOrder(boolean ascending) {
+        Collections.sort(items, (l1, l2) -> l1.getItemTitle().compareTo(l2.getItemTitle()));
+        if (!ascending) { Collections.reverse(items); }
+    }
+
+    public void sortItemsByPrice(boolean ascending) {
+        Collections.sort(items, (l1, l2) -> l1.getPrice().compareTo(l2.getPrice()));
+        if (!ascending) { Collections.reverse(items); }
+    }
 }
