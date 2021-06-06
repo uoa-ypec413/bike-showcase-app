@@ -1,6 +1,5 @@
 package com.example.bikeshowcase;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -61,11 +60,10 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
 
     public void onItemClick(int position) {
         // Start a details activity and pass the current item
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this);
         Intent detailsIntent = new Intent(ListActivity.this, DetailsActivity.class);
         Item item = mListItemAdapter.getItem(position);
         detailsIntent.putExtra("bike", item);
-        startActivity(detailsIntent, options.toBundle());
+        startActivity(detailsIntent);
 
         DataProvider.incrementItemViewCount(item);
     }

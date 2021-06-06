@@ -2,8 +2,6 @@ package com.example.bikeshowcase;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.transition.Explode;
-import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,13 +14,6 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Create an explode transition when this activity is started
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        Explode enterTransition = new Explode();
-        enterTransition.setDuration(600);
-        getWindow().setEnterTransition(enterTransition);
-
         setContentView(R.layout.activity_details);
 
         Intent intent = getIntent();
