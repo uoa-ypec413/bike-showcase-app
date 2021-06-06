@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.ViewHolder> {
 
-    private Context mContext;
-    private String[] mImages;
-    private int mLayoutID;
-    private LayoutInflater mInflater;
+    private final Context mContext;
+    private final String[] mImages;
+    private final int mLayoutID;
+    private final LayoutInflater mInflater;
 
     public ViewPagerAdapter(Context context, int resource, String[] images) {
         this.mContext = context;
-        this.mImages= images;
+        this.mImages = images;
         this.mLayoutID = resource;
         this.mInflater = LayoutInflater.from(mContext);
     }
@@ -27,7 +27,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(mLayoutID,parent,false);
+        View view = mInflater.inflate(mLayoutID, parent, false);
         return new ViewHolder(view);
     }
 
@@ -49,7 +49,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
     }
 
     // View Holder for each individual image
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
 
