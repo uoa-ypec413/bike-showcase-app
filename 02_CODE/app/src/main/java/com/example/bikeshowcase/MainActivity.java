@@ -2,10 +2,12 @@ package com.example.bikeshowcase;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -77,11 +79,16 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewItemA
 
     @Override
     public void onItemClick(int position) {
+        Item item = mRecyclerViewItemAdapter.getItem(position);
+
+        // Add a shared element transition for the category image
+        ImageView categoryImageView = getCategoryImageView(item);
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, categoryImageView, categoryImageView.getTransitionName());
+
         // Start a details activity and pass the current item
         Intent detailsIntent = new Intent(MainActivity.this, DetailsActivity.class);
-        Item item = mRecyclerViewItemAdapter.getItem(position);
         detailsIntent.putExtra("bike", item);
-        startActivity(detailsIntent);
+        startActivity(detailsIntent, options.toBundle());
 
         DataProvider.incrementItemViewCount(item);
     }
@@ -94,5 +101,26 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewItemA
         List<Item> mostVisitedItems = DataProvider.getItemsOrderedByVisits();
         this.mRecyclerViewItemAdapter.setItems(mostVisitedItems);
         this.mRecyclerViewItemAdapter.notifyDataSetChanged();
+    }
+
+    // Gets the category ImageView for an item
+    public ImageView getCategoryImageView(Item item){
+        ImageView categoryImageView = new ImageView(this);
+
+        switch (item.getCategory()) {
+            case "Road Bikes":
+                categoryImageView = findViewById(R.id.road_image_view);
+                break;
+            case "Mountain Bikes":
+                categoryImageView = findViewById(R.id.mountain_image_view);
+                break;
+            case "Adventure Bikes":
+                categoryImageView = findViewById(R.id.adventure_image_view);
+                break;
+            case "Kids Bikes":
+                categoryImageView = findViewById(R.id.kids_image_view);
+                break;
+        }
+        return categoryImageView;
     }
 }
