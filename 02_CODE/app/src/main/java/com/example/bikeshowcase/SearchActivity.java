@@ -35,20 +35,36 @@ public class SearchActivity extends ListActivity {
 
     @Override
     public List<Item> getActivityItems(String searchQuery) {
+        String[] searchQueryArray = searchQuery.split(" ");
+
         List<Item> items = DataProvider.getItems();
         List<Item> searchItems = new ArrayList<>();
 
-        for (Item item: items) {
+        boolean containsQuery = true;
 
-            if ((item.getCategory().toLowerCase()).contains(searchQuery.toLowerCase())) {
+        for (Item item: items) {
+            for(String query: searchQueryArray) {
+                containsQuery = containsQuery && itemContainsQuery(item, query);
+            }
+            if(containsQuery){
                 searchItems.add(item);
-            } else if ((item.getItemTitle().toLowerCase()).contains(searchQuery.toLowerCase())) {
-                searchItems.add(item);
-            } else if ((item.getDescription().toLowerCase()).contains(searchQuery.toLowerCase())) {
-                searchItems.add(item);
-            } else if ((item.getColour().toLowerCase()).contains(searchQuery.toLowerCase()))
-                searchItems.add(item);
+            } else {
+                containsQuery = true;
+            }
         }
         return searchItems;
+    }
+
+    private boolean itemContainsQuery(Item item, String query) {
+        if ((item.getCategory().toLowerCase()).contains(query.toLowerCase())) {
+            return true;
+        } else if ((item.getItemTitle().toLowerCase()).contains(query.toLowerCase())) {
+            return true;
+        } else if ((item.getDescription().toLowerCase()).contains(query.toLowerCase())) {
+            return true;
+        } else if ((item.getColour().toLowerCase()).contains(query.toLowerCase())) {
+            return true;
+        } else
+            return false;
     }
 }
