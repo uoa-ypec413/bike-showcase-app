@@ -8,8 +8,9 @@ import java.util.Map;
 
 public class DataProvider {
 
-    //Creates the data map for our app. More items can be added following the same format as below.
-    private static Map<Item, Integer> itemVisits = new LinkedHashMap<>();
+    // Creates the data map for our app. More items can be added following the same format as below.
+    private static final Map<Item, Integer> itemVisits = new LinkedHashMap<>();
+
     static {
         itemVisits.put(
                 new Item()
@@ -401,7 +402,7 @@ public class DataProvider {
     public static List<Item> getItems() {
         List<Item> items = new ArrayList<>();
 
-        for (Map.Entry<Item, Integer> entry: itemVisits.entrySet()) {
+        for (Map.Entry<Item, Integer> entry : itemVisits.entrySet()) {
             items.add(entry.getKey());
         }
         return items;

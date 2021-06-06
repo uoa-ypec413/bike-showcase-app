@@ -13,26 +13,26 @@ public class SearchActivity extends ListActivity {
         super.onCreate(savedInstanceState);
 
         // No sorting spinner is shown if there are no search results
-        if (this.items.isEmpty()) {
-            this.spinner.setVisibility(View.GONE);
+        if (this.mItems.isEmpty()) {
+            this.mSpinner.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void populateItemsList(String message) {
-        this.items = getActivityItems(message);
+        this.mItems = getActivityItems(message);
     }
 
     // This method sets the title for the Toolbar and TextView
     @Override
     public void setTitle(String message) {
-        this.listToolBar.setTitle("Search");
+        this.mListToolBar.setTitle("Search");
 
-        titleTextView.setVisibility(View.VISIBLE);
-        if (this.items.isEmpty()) {  // If there are no search results
-            this.titleTextView.setText("Sorry, no matches found!");
+        mTitleTextView.setVisibility(View.VISIBLE);
+        if (this.mItems.isEmpty()) {  // If there are no search results
+            this.mTitleTextView.setText("Sorry, no matches found!");
         } else {
-            this.titleTextView.setText("Search results for " + "\"" + message + "\"");
+            this.mTitleTextView.setText("Search results for " + "\"" + message + "\"");
         }
     }
 

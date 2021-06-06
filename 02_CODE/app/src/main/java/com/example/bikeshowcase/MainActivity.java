@@ -1,13 +1,10 @@
 package com.example.bikeshowcase;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewItemA
         setContentView(R.layout.activity_main);
 
         SearchView searchView = findViewById(R.id.search_view);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -81,8 +78,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewItemA
 
     @Override
     public void onItemClick(int position) {
-        // Start a details activity and pass the current item
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this);
+
+        // Start a details activity and pass the current item
         Intent detailsIntent = new Intent(MainActivity.this, DetailsActivity.class);
         Item item = mRecyclerViewItemAdapter.getItem(position);
         detailsIntent.putExtra("bike", item);

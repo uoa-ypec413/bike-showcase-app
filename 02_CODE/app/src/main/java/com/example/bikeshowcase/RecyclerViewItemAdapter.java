@@ -9,15 +9,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewItemAdapter.ItemViewHolder> {
 
-    private int mLayoutID;
+    private final int mLayoutID;
     private List<Item> mItems;
-    private Context mContext;
-    private LayoutInflater mInflater;
-    private OnItemClickListener mOnItemClickListener;
+    private final Context mContext;
+    private final LayoutInflater mInflater;
+    private final OnItemClickListener mOnItemClickListener;
 
     public RecyclerViewItemAdapter(Context context, int resource, List<Item> items, OnItemClickListener onItemClickListener) {
         this.mLayoutID = resource;
@@ -65,9 +66,14 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
         return mItems.get(position);
     }
 
+    // Allows the parent activity to implement the on item click listener
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
     // View Holder for each individual item
     // Implements View.OnClickListener so that the view items are clickable
-    public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView bikeImageView;
         TextView bikeTextView;
@@ -89,10 +95,5 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
         public void onClick(View v) {
             this.onItemClickListener.onItemClick(getBindingAdapterPosition());
         }
-    }
-
-    // Allows the parent activity to implement the on item click listener
-    public interface OnItemClickListener {
-        void onItemClick(int position);
     }
 }
