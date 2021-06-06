@@ -398,33 +398,11 @@ public class DataProvider {
         return items;
     }
 
-    public static List<Item> getCategoryItems(String category) {
-        //System.out.println("Category = " + category);
-        List<Item> items = new ArrayList<>();
-        for(Map.Entry<Item,Integer> entry : itemVisits.entrySet()){
-
-            //System.out.println("Item category = " + entry.getKey().getCategory());
-            if(entry.getKey().getCategory().equals(category)){
-                items.add(entry.getKey());
-            }
-        }
-        return items;
-    }
-
-    public static List<Item> getSearchItems(String searchQuery) {
+    public static List<Item> getItems() {
         List<Item> items = new ArrayList<>();
 
         for (Map.Entry<Item, Integer> entry: itemVisits.entrySet()) {
-            Item currentItem = entry.getKey();
-
-            if ((currentItem.getCategory().toLowerCase()).contains(searchQuery.toLowerCase())) {
-                items.add(entry.getKey());
-            } else if ((currentItem.getItemTitle().toLowerCase()).contains(searchQuery.toLowerCase())) {
-                items.add(entry.getKey());
-            } else if ((currentItem.getDescription().toLowerCase()).contains(searchQuery.toLowerCase())) {
-                items.add(entry.getKey());
-            } else if ((currentItem.getColour().toLowerCase()).contains(searchQuery.toLowerCase()))
-                items.add(entry.getKey());
+            items.add(entry.getKey());
         }
         return items;
     }

@@ -83,6 +83,7 @@ public abstract class ListActivity extends AppCompatActivity implements ListItem
 
     public abstract void populateItemsList(String message);
     public abstract void setTitle(String message);
+    public abstract List<Item> getActivityItems(String query); // Probably needs a better name than query
 
     public void onItemClick(int position) {
         // Start a details activity and pass the current item
