@@ -14,9 +14,9 @@ import java.util.List;
 
 public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.CategoryViewHolder> {
 
-    private List<Item> mItems;
-    private Context mContext;
-    private ListItemAdapter.OnItemClickListener mOnItemClickListener;
+    private final List<Item> mItems;
+    private final Context mContext;
+    private final ListItemAdapter.OnItemClickListener mOnItemClickListener;
 
     public ListItemAdapter(Context context, List<Item> items, ListItemAdapter.OnItemClickListener onItemClickListener){
         this.mContext = context;
@@ -57,7 +57,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.Catego
         return mItems.size();
     }
 
-    public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         OnItemClickListener onItemClickListener;
         TextView title, colour, price;
